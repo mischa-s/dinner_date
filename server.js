@@ -20,4 +20,4 @@ app.set('views', path.join(__dirname, 'views'))
 // Routes
 
 app.get('/', routes.getHome)
-app.get('/result', routes.dinnerResult)
+// app.get('/result', routes.dinnerResult)
