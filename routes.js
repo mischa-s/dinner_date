@@ -11,8 +11,9 @@ function getHome (req, res) {
 }
 
 function availabilityOnDay (req, res) {
-    knex('friends')
-      .join('availability', 'friends.id', '=', 'availability.friend_id')
+    knex('availability')
+      .join('friends_night', 'night_id', '=', 'availability.availability_id')
+      .join('friends', 'friends_night.friends_id', '=', 'friends.id')
       .where ('availability.night', req.params.night)
       .then (listFriends => {
               var data = {friend: listFriends}
