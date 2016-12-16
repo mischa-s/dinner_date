@@ -16,10 +16,11 @@ function availabilityOnDay (req, res) {
       .join('friends', 'friends_night.friends_id', '=', 'friends.id')
       .where ('availability.night', req.params.night)
       .then (listFriends => {
-              var data = {friend: listFriends}
+              var data = {friend: listFriends, night: req.params.night}
               console.log (data)
-              res.render('availableFriends', data)
+              res.render('availableFriends', data )
       })
+
       .catch (logError)
 }
 
