@@ -11,12 +11,13 @@ function getHome (req, res) {
 }
 
 function availabilityOnDay (req, res) {
+    var night = req.params.night.charAt(0).toUpperCase() + req.params.night.slice(1);
     knex('availability')
       .join('friends_night', 'night_id', '=', 'availability.availability_id')
       .join('friends', 'friends_night.friends_id', '=', 'friends.id')
-      .where ('availability.night', req.params.night)
+      .where ('availability.night', night)
       .then (listFriends => {
-              var data = {friend: listFriends, night: req.params.night}
+              var data = {friend: listFriends, night: night}
               console.log (data)
               res.render('availableFriends', data )
       })
